@@ -1,0 +1,61 @@
+{% extends "template.html" %}
+{%set menu_url= 'Quem Somos'%}
+{% block content %}
+<!--=== Breadcrumbs ===-->
+<div class="container">
+	<ul class="breadcrumb-v5">
+		<li><a href="{{base_url}}/"><i class="fa fa-home"></i></a></li>
+		<li class="active">Quem Somos</li>
+	</ul> 
+</div>
+
+<!--=== Content ===-->
+{%if empresa.historia%}
+<div class="container content">
+	<h2>Nossa História</h2>
+	{{empresa.historia | raw}}
+</div>
+{%endif%}
+<!--=== Content ===-->
+{%if empresa.resumo%}
+<div class="container content">
+	<h2>Mais Sobre Nós</h2>
+	{{empresa.resumo | raw}}
+</div>
+{%endif%}
+{%if empresa.missao %}
+{%if empresa.visao %}
+{%if  empresa.valores%}
+<div class="container content">
+	<div class="row margin-bottom-10">                 
+		<div class="col-md-4 col-sm-6">                 
+			<div class="service-block rounded-2x service-block-dark-blue">        
+				<i class="icon-2x color-light fa fa-fighter-jet"></i>             
+				<h2 class="heading-md">Missão</h2>
+				<p class="color-light">{{empresa.missao}}</p>
+			</div>
+		</div>
+		<div class="col-md-4 col-sm-6">           
+			<div class="service-block rounded-2x service-block-purple">            
+				<i class="icon-2x color-light fa fa-eye"></i>                      
+				<h2 class="heading-md">Visão</h2>
+				<p class="color-light">{{empresa.visao}}</p>
+			</div>
+		</div>
+		<div class="col-md-4 col-sm-6">         
+			<div class="service-block rounded-2x service-block-light-green">          
+				<i class="icon-2x color-light fa fa-dollar"></i>                   
+				<h2 class="heading-md">Valores</h2>
+				<ul class="text-left color-light" style="list-style-type: none;">
+					{%for valor in empresa.valores%}
+					<li><p>{{valor}}</p>
+						{%endfor%}
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+{%endif%}
+{%endif%}
+{%endif%}
+{% endblock %}

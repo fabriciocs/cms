@@ -1,0 +1,45 @@
+{% extends "template.html" %}
+{%set menu_url='posts/1'%}
+
+{% block content %}
+<!--=== Content Part ===-->
+<div class="container content">
+	<div class="row margin-bottom-30">
+		<!-- Bordered Funny Boxes -->
+		{% for post in posts %}
+		<div class="col-md-6">
+			<div class="funny-boxes funny-boxes-top-sea">
+				<div class="row">
+					{%if post.album %}
+					<div class="col-md-4 funny-boxes-img">
+						<img alt="" src="../{{post.album}}" class="img-responsive">
+						<ul class="list-unstyled">
+							<li><i class="fa fa-calendar"></i> {{post.date |date("d/m/Y G:i:s")}}</li>
+						</ul>
+					</div>
+					{%endif%}
+					<div class="{%if post.album %}col-md-8{%else%}col-md-12{%endif%}">
+						<h2><a href="{{base_url}}/post/{{post.titulo | url_encode }}">{{post.titulo}}</a></h2>
+						<p>{{post.resumo |slice(0, 350)}}...</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Bordered Funny Boxes -->
+		{% endfor %}
+	</div>
+</div>
+</div>  <div class="container">
+	<div class="text-center">
+		<ul class="pagination">
+			{% if pages == 1 %}
+			<li><a href="{{pages}}">{{pages}}</a></li>
+			{% else %}
+			{% for i in 0..pages %}
+			<li><a href="{{pages}}">{{pages}}</a></li>
+			{% endfor %}
+			{%endif%}
+		</ul>
+	</div>
+</div>
+{% endblock %}

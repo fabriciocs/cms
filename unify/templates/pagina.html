@@ -1,0 +1,21 @@
+{% extends "template.html" %}
+{%set menu_url = pagina.titulo%}
+{% block content %}
+<!--=== Breadcrumbs ===-->
+<div class="breadcrumbs">
+	<div class="container">
+		<h1 class="pull-left">{{pagina.titulo}}</h1>
+		<ul class="pull-right breadcrumb">
+			<li><a href="{{base_url}}/">Home</a></li>
+			<li class="active">{{pagina.nomeMenu}}</li>
+		</ul>
+	</div><!--/container-->
+</div><!--/breadcrumbs-->
+<!--=== End Breadcrumbs ===-->
+
+<!--=== Content ===-->
+<div class="container content height-500">
+	{{pagina.conteudo | raw}}
+</div>
+</div>
+{% endblock %}

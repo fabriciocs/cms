@@ -1,0 +1,106 @@
+<!--=== Footer v4 ===-->
+<div class="footer-v4">
+	<div class="footer">
+		<div class="container">
+			<div class="row">
+				<!-- About -->
+				<div class="col-md-4 md-margin-bottom-40">
+					<a href="{{base_url}}/"><img class="footer-logo" src="{{empresa.urlLogo}}" alt=""></a>
+					<p>{{empresa.slogan}}</p>
+					<br>
+
+					<ul class="list-unstyled address-list margin-bottom-20">
+						<li><i class="fa fa-angle-right"></i>{{empresa.endereco}}</li>
+						<li><i class="fa fa-angle-right"></i>Telefone: {{empresa.telefone}}</li>
+						<li><i class="fa fa-angle-right"></i>Email: <a href="mailto:{{empresa.emailContato}}">{{empresa.emailContato}}</a></li>
+					</ul>
+
+				</div>
+				<!-- End About -->                    
+				{%if posts%}
+				<div class="col-md-2 col-sm-3">
+					<div class="row">
+						<div class="col-sm-12 col-xs-6">
+							<h2 class="thumb-headline">Posts</h2>
+							<ul class="list-unstyled simple-list margin-bottom-20">
+								{%if posts.length > 5%}
+								{% for i in 0..5 %}
+								<li>
+									<a href="{{base_url}}/post/{{ posts[i].titulo}}">{{ posts[i].nomeMenu}}</a>
+									<small>{{posts[i].date |date("d/m/Y G:i:s")}}</small>
+								</li>
+								{% endfor %}
+								{%else%}
+								{% for post in posts %}
+								<li>
+									<a href="{{base_url}}/post/{{ post.titulo}}">{{ post.nomeMenu}}</a>
+									<small>{{post.date |date("d/m/Y G:i:s")}}</small>
+								</li>
+								{% endfor %}
+								{%endif%}
+							</ul>
+						</div>    
+					</div>        
+				</div>
+				{%endif%}
+
+				{%if menus%}
+				<div class="col-md-2 col-sm-3">
+					<div class="row">
+						<div class="col-sm-12 col-xs-6">
+							<h2 class="thumb-headline">Menus</h2>
+							<ul class="list-unstyled simple-list margin-bottom-20">
+								<li><a href="{{base_url}}/">Home</a></li>
+								<li><a href="{{base_url}}/quemsomos">Quem Somos</a></li>
+								{% for menu in menus %}
+								<li><a href="{{base_url}}/{{ menu.url }}">{{ menu.texto }}</a></li>
+								{% endfor %}
+								{%if produtos%}
+								<li><a href="{{base_url}}/produtos/1">Produtos</a></li>
+								{%endif%}
+								{%if posts%}
+								<li><a href="{{base_url}}/posts/1">Blog</a></li>
+								{%endif%}
+								{%if albuns%}
+								<li><a href="{{base_url}}/galeria">Galeria</a></li>
+								{%endif%}
+								<li><a href="{{base_url}}/contato">Contato</a></li>
+							</ul>
+						</div>
+					</div>        
+				</div>
+				{%endif%}
+				<!-- End Simple List -->
+			</div><!--/end row-->
+		</div><!--/end continer-->
+	</div><!--/footer-->
+
+	<div class="copyright">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6">                     
+					<p>
+						2014 &copy;
+						<a target="_blank" href="http://bestsmart.com.br">BestSmart</a>
+					</p>
+				</div>
+				<div class="col-md-6">  
+					<ul class="list-inline sponsors-icons pull-right">
+						{%if empresa.facebookPageUrl%}
+						{%set facebooUrl = empresa.facebookPageUrl%}
+						{%else%}
+						{%set facebooUrl = empresa.dominio%}
+						{%endif%}
+						<li style="vertical-align: bottom;"><div style="max-height: 20px;"><a href="https://twitter.com/share" class="twitter-share-button" data-count="none">Tweet</a></div></li>
+						<li style="vertical-align: bottom;"><div style="max-height: 20px;"><div class="g-plus" data-action="share" data-annotation="none" data-href="{{url}}"></div></div></li>
+						<li style="vertical-align: bottom;"><div style="max-height: 20px;"><script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: pt_BR</script>
+								<script type="IN/Share" data-url="{{url}}"></script></div></li>
+						<li><div class="fb-share-button" data-href="{{url}}" data-layout="button_count"></div></li>   
+						<li><div class="fb-like" data-href="{{facebookUrl}}" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false" data-colorscheme="light"></div></li>   
+					</ul>
+				</div>
+			</div>
+		</div> 
+	</div><!--/copyright--> 
+</div>
+<!--=== End Footer v4 ===-->

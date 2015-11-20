@@ -1,0 +1,62 @@
+{% extends "template.html" %}
+{%set menu_url='posts/1'%}
+{%block head%}
+
+<meta property="og:type" content="article">
+<meta property="article:author" content="{{empresa.nome}}">
+<meta property="article:tag" content="{{post.tags}}">
+<meta property="article:published_time" content="{{post.date |date("d/m/Y G:i:s")}}">
+{{parent()}}
+{%endblock%}
+
+{% block content %}
+<!--=== Breadcrumbs ===-->
+
+<!--=== Breadcrumbs ===-->
+<div class="container">
+	<ul class="breadcrumb-v5">
+		<li><a href="{{base_url}}/"><i class="fa fa-home"></i></a></li>
+		<li><a href="{{base_url}}/posts/1">Blog</a></li>
+		<li class="active">{{post.titulo}}</li>
+	</ul> 
+</div>
+<!--Blog Post-->
+<div class="container content height-500">
+	<div class="blog margin-bottom-50">
+		{%if post.images%}
+		<div class="blog-img">
+			<div class="carousel slide carousel-v1" id="myCarousel">
+				<div class="carousel-inner">
+					{% for image in post.images %}
+					<div class="item {%if loop.first %}active{%endif%}">
+						<img alt="" src="../{{image['url']}}">
+					</div>
+					{%endfor%}
+				</div>
+
+				<div class="carousel-arrow">
+					<a data-slide="prev" href="#myCarousel" class="left carousel-control">
+						<i class="fa fa-angle-left"></i>
+					</a>
+					<a data-slide="next" href="#myCarousel" class="right carousel-control">
+						<i class="fa fa-angle-right"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+		{%endif%}
+		<div class="blog-post-tags">
+			<ul class="list-unstyled list-inline blog-info">
+				<li><i class="fa fa-calendar"></i>{{post.date |date("d/m/Y G:i:s")}}</li>
+				<li><i class="fa fa-tags"></i>{{post.tags}}</li>
+			</ul>
+		</div>
+
+		<p>{{post.conteudo | raw}}</p>
+	</div>
+	<div class="row col-md-12">
+		<div class="fb-share-button" data-href="{{url}}" data-layout="button_count"></div>
+		<div class="fb-comments" data-href="{{url}}" data-width="100%" data-numposts="5" data-colorscheme="light"></div>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "template.html" %}
+{%set menu_url='produtos/1'%}
+{% block content %}
+<!--=== Breadcrumbs ===-->
+<div class="container">
+	<ul class="breadcrumb-v5">
+		<li><a href="{{base_url}}/"><i class="fa fa-home"></i></a></li>
+		<li class="active">Produtos</li>
+	</ul> 
+</div>
+
+<div  class="container content-md">
+	<div class="row margin-bottom-50">
+		{%for produto in produtos%}
+		<div class="col-md-4 md-margin-bottom-30">
+			<div class="overflow-h">
+				<a class="illustration-v3 illustration-img1" style="background-image: url({{base_url}}/{{produto.album}});" href="{{base_url}}/produto/{{produto.nome | url_encode }}">
+					<span class="illustration-bg">
+						<span class="illustration-ads">
+							<span class="illustration-v3-category">
+								<span class="product-category">{{produto.nome}}</span>
+								<span class="product-amount">{{produto.resumo |slice(0, 150)}}</span>
+							</span>    
+						</span>    
+					</span>    
+				</a>
+			</div>    
+		</div>
+		{%endfor%}
+	</div>
+	<div class="container">
+		<div class="text-center">
+			<ul class="pagination">
+				{% if pages == 1 %}
+				<li><a href="{{pages}}">{{loop.index}}</a></li>
+				{% else %}
+				{% for i in 0..pages %}
+				<li><a href="{{pages}}">{{loop.index}}</a></li>
+				{% endfor %}
+				{%endif%}
+			</ul>
+		</div>
+	</div>
+</div>
+{% endblock %}

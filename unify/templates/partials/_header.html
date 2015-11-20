@@ -1,0 +1,45 @@
+
+<title>{{title}}</title>
+
+<!-- Meta -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="{{empresa.resumo|striptags }}">
+<meta name="author" content="BestSmart Negócio e Tecnologia">
+<meta name="robots" content="index, follow">
+<meta property="og:locale" content="pt_BR">
+
+<meta property="og:url" content="{{empresa.dominio}}">
+
+<meta property="og:title" content="{{title}}">
+<meta property="og:site_name" content="{{empresa.nome}}">
+
+<meta property="og:description" content="{{empresa.resumo|striptags }}">
+
+<meta property="og:type" content="website">
+
+<!-- CSS Global Compulsory -->
+<link rel="stylesheet" href="{{base_url}}/{{templateName}}/assets/plugins/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="{{base_url}}/{{templateName}}/assets/css/style.css">
+
+<!-- CSS Implementing Plugins -->
+<link rel="stylesheet" href="{{base_url}}/{{templateName}}/assets/plugins/line-icons/line-icons.css">
+<link rel="stylesheet" href="{{base_url}}/{{templateName}}/assets/plugins/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="{{base_url}}/{{templateName}}/assets/plugins/parallax-slider/css/parallax-slider.css">
+<link rel="stylesheet" href="{{base_url}}/{{templateName}}/assets/plugins/fancybox/source/jquery.fancybox.css">
+<link rel="stylesheet" href="{{base_url}}/{{templateName}}/assets/plugins/owl-carousel/owl-carousel/owl.carousel.css">
+<link rel="stylesheet" href="{{base_url}}/{{templateName}}/assets/plugins/revolution-slider/rs-plugin/css/settings.css" type="text/css" media="screen">
+<link rel="stylesheet" href="{{base_url}}/{{templateName}}/assets/plugins/flexslider/flexslider.css">  
+
+<!--[if lt IE 9]><link rel="stylesheet" href="assets/plugins/revolution-slider/rs-plugin/css/settings-ie8.css" type="text/css" media="screen"><![endif]-->
+{%block more_css%}
+{%endblock%}
+<!-- CSS Theme -->
+{%if templateStyle == 'dark'%}
+<link rel="stylesheet" href="{{base_url}}/{{templateName}}/assets/css/theme-skins/dark.css">
+{%endif%}
+<link href="{{base_url}}/{{templateName}}/assets/css/theme-colors/{{templateCollor}}.css" rel="stylesheet" type="text/css"/>
+<!-- CSS Customization -->
+<link rel="stylesheet" href="{{base_url}}/{{templateName}}/assets/css/custom.css">
+
+

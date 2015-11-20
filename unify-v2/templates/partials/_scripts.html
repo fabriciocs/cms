@@ -1,0 +1,31 @@
+<!-- JS Global Compulsory -->
+<script src="{{base_url}}/{{templateName}}/assets/plugins/jquery/jquery.min.js"></script>
+<script src="{{base_url}}/{{templateName}}/assets/plugins/jquery/jquery-migrate.min.js"></script>
+<script src="{{base_url}}/{{templateName}}/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<!-- JS Implementing Plugins -->
+<script src="{{base_url}}/{{templateName}}/assets/plugins/back-to-top.js"></script>
+<script src="{{base_url}}/{{templateName}}/assets/plugins/owl-carousel/owl-carousel/owl.carousel.js"></script>
+<script src="{{base_url}}/{{templateName}}/assets/plugins/scrollbar/src/jquery.mousewheel.js"></script>
+<script src="{{base_url}}/{{templateName}}/assets/plugins/scrollbar/src/perfect-scrollbar.js"></script>
+<script src="{{base_url}}/{{templateName}}/assets/plugins/jquery.parallax.js"></script>
+<script src="{{base_url}}/{{templateName}}/assets/plugins/revolution-slider/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+<script src="{{base_url}}/{{templateName}}/assets/plugins/revolution-slider/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+<!-- JS Customization -->
+<script src="{{base_url}}/{{templateName}}/assets/js/custom.js"></script>
+<!-- JS Page Level -->
+<script src="{{base_url}}/{{templateName}}/assets/js/shop.app.js"></script>
+<script src="{{base_url}}/{{templateName}}/assets/js/plugins/owl-carousel.js"></script>
+<script src="{{base_url}}/{{templateName}}/assets/js/plugins/revolution-slider.js"></script>
+<script>
+jQuery(document).ready(function () {
+	App.init();
+	App.initParallaxBg();
+	OwlCarousel.initOwlCarousel();
+	RevolutionSlider.initRSfullWidth();
+});
+</script>
+<!--[if lt IE 9]>
+    <script src="{{base_url}}/{{templateName}}/assets/plugins/respond.js"></script>
+    <script src="{{base_url}}/{{templateName}}/assets/plugins/html5shiv.js"></script>
+    <script src="{{base_url}}/{{templateName}}/assets/js/plugins/placeholder-IE-fixes.js"></script>
+<![endif]-->

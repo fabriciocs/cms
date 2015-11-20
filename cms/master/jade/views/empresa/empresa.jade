@@ -1,0 +1,152 @@
+.container-fluid
+	.panel.panel-default
+		.panel-body
+			button.btn.btn-labeled.btn-primary(type='button', ng-click="salvar()",ng-disabled="!temEmpresa()")
+				span.btn-label
+					i.fa.fa-floppy-o
+				| Salvar
+			a.btn.btn-labeled.btn-success(href="",ng-dialog-scope='this', ng-dialog-data='{{jsonData}}', ng-dialog="modalImagensId", ng-dialog-controller='NullController', ng-dialog-class='ngdialog-mytheme', ng-dialog-show-close='true',ng-disabled="!temEmpresa() || empresa.id === undefined")
+				span.btn-label
+					i.fa.fa-file-image-o
+				| Imagens
+	#formEmpresas.panel.panel-default(ng-if="temEmpresa()")
+		.panel-heading
+			span.h4 {{empresa.id +' - '+ empresa.nome}}
+			paneltool(tool-collapse)
+		.panel-wrapper(collapse="formEmpresas", ng-init="formEmpresas=true")
+			.panel-body
+				form#formularioEmpresas(action="#",validate-form='', novalidate='',editable-form="", name="$form")
+					fieldset
+						.col-md-12
+							.col-md-6
+								.form-group
+									label.control-label(for="empresa-nome") Nome: *
+									input.form-control#empresa-nome(type='text', name='nome', ng-model='empresa.nome', placeholder="Digite o nome",required)
+							.col-md-6
+								.form-group
+									label.control-label(for="empresa-slogan") Slogan da Empresa: *
+									input.form-control#empresa-slogan(type='text', name='nome', ng-model='empresa.slogan', placeholder="Digite o slogan")
+							.col-md-6
+								.form-group
+									label.control-label(for="empresa-dominio") Domínio:
+									input.form-control#empresa-dominio(type='text', ng-model='empresa.dominio', placeholder="Digite o dominio")
+							.col-md-6
+								.form-group
+									label.control-label(for="empresa-facebook") Url Página Facebook:
+									input.form-control#empresa-facebook(type='text', ng-model='empresa.facebookPageUrl', placeholder="Digite a url da página do Facebook")
+							.col-md-6
+								.form-group
+									label.control-label(for="empresa-url-logo") Url Logo:
+									input.form-control#empresa-url-logo(type='url', name='telefone', ng-model='empresa.urlLogo', placeholder="Digite a url da logo")
+							.col-md-6
+								.form-group
+									label.control-label(for="empresa-idGoogleAnalytics") Id Google Analytics: *
+									input.form-control#empresa-idGoogleAnalytics(type='text', name='idGoogleAnalytics', ng-model='empresa.idGoogleAnalytics', placeholder="Digite o ID do Google Analytics")
+							.col-md-6
+								.form-group
+									label.control-label(for="empresa-telefone") Telefone: *
+									input.form-control#empresa-telefone(type='text', masked="", data-inputmask="'mask': '(99) 9999-9999[9]'",  name='telefone', ng-model='empresa.telefone', placeholder="Digite o telefone",required)
+							.col-md-6
+								.form-group
+									label.control-label(for="empresa-endereco") Endereço: *
+									input.form-control#empresa-endereco(type='text', name='endereco', ng-model='empresa.endereco', placeholder="Digite o endereco",required)
+							.col-md-6
+								.form-group
+									label.control-label(for="empresa-email") Email Contato *
+									input.form-control#empresa-email(ng-model="empresa.emailContato",type='email', placeholder="Digite o email de contato separado", required)
+							.col-md-6
+								.form-group
+									label.control-label(for="empresa-maps") Iframe Google Maps *
+									textarea.form-control#empresa-maps(ng-model="empresa.iframeGoogleMaps", placeholder="Cole o código embed do Google Maps")
+							.col-md-6
+								.form-group
+									label.control-label(for="empresa-missao") Missão *
+									textarea.form-control#empresa-missao(ng-model="empresa.missao", placeholder="Digite a missão")
+							.col-md-6
+								.form-group
+									label.control-label(for="empresa-visao") Visão *
+									textarea.form-control#empresa-visao(ng-model="empresa.visao", placeholder="Digite a visão")
+							.col-md-6
+								.form-group
+									label.control-label(for="empresa-valores") Valores *
+									textarea.form-control#empresa-valores(ng-model="empresa.valores", placeholder="Valores separados por vírgula")
+						.col-md-6
+							.form-group
+								label.control-label(for="empresa-historia") História da Empresa *
+								summernote(ng-model="empresa.historia",lang="pt-BR", config="cfg")
+						.col-md-6
+							.form-group
+								label.control-label(for="empresa-resumo") Resumo Sobre a Empresa *
+								summernote(ng-model="empresa.resumo",lang="pt-BR", config="cfg")
+	#formTemaEmpresas.panel.panel-default(ng-if="temEmpresa()")
+		.panel-heading
+			span.h4 
+			paneltool(tool-collapse)
+		.panel-wrapper(collapse="formTemaEmpresas", ng-init="formTemaEmpresas=true")
+			.panel-body
+				form#formularioTemaEmpresas(action="#",validate-form='', novalidate='',editable-form="")
+					fieldset
+						.col-md-12
+							.col-md-6
+								.form-group
+									label.control-label(for="empresa-nomeTema") Tema:
+									// this uses fixed width to avoid expand outside the group container
+									select.form-control(ng-model='empresa.nomeTema')
+										option(value="unify") Unify
+										option(value="unify-v2") Unify-v2
+							.col-md-6
+								.form-group
+									label.control-label(for="empresa-nomeCorTema") Cor
+									// this uses fixed width to avoid expand outside the group container
+									select.form-control(ng-model='empresa.nomeCorTema')
+										option(value="default", style="background-color:#5fb611;") Padrão
+										option(value="blue", style="background-color:#2980b9;")  Azul
+										option(value="orange", style="background-color:#d35400;") Laranja
+										option(value="red", style="background-color:#c0392b;") Vermelho
+										option(value="light", style="background-color:#7f8c8d;") Cinza
+										option(value="purple", style="background-color:#814fb5;") Lilás
+										option(value="aqua", style="background-color:#26bac8;") Azul Marinho
+										option(value="brown", style="background-color:#81674b;") Marrom
+										option(value="dark-blue", style="background-color:#324c80;") Azul Escuro
+										option(value="light-green", style="background-color:#59b795;") Verde Claro
+										option(value="dark-red", style="background-color:#a10f2b;") Vermelho Escuro
+										option(value="teal", style="background-color:#18ba9b;") Cerceta
+
+							.col-md-6(ng-if="empresa.nomeTema !== 'unify-v2'")
+								.col-md-6
+									.form-group
+										label.control-label 
+										.checkbox.c-checkbox
+											label
+												input(type='checkbox', ng-model="empresa.temaFullWidth", name="empresa.temaFullWidth")
+												span.fa.fa-check
+												| Largura Total da Tela
+							.col-md-6(ng-if="empresa.nomeTema !== 'unify-v2'")
+								.col-md-6
+									.form-group
+										label.control-label 
+										.checkbox.c-checkbox
+											label
+												input(type='checkbox', ng-model="empresa.temaDark", name="empresa.temaDark")
+												span.fa.fa-check
+												| Tema Escuro
+script(type="text/ng-template", id="modalImagensId")
+	.ngdialog-content.bsdialog
+		#formVerImagens.panel.panel-info(ng-if="temEmpresa() && empresa.id > 0")
+			.panel-heading
+				span.h4 Imagens do Empresa
+				paneltool(tool-collapse)
+			.panel-wrapper(collapse="formVerImagens", ng-init="formVerImagens=true")
+				.panel-body
+					gallery(images="images", excluir-imagem='excluirImagem', set-capa="setCapa")
+
+		#formEmpresaImagens.panel.panel-info(ng-if="temEmpresa() && empresa.id > 0")
+			.panel-heading
+				span.h4 Upload de Imagens
+				paneltool(tool-collapse)
+			.panel-wrapper(collapse="formEmpresaImagens", ng-init="formEmpresaImagens=true")
+				.panel-body
+					form#formularioEmpresaImagens(action="#",validate-form='', novalidate='')
+						fieldset
+							h3 Upload de Imagens
+							bs-image-upload(album="empresa.album.id", on-upload="afterUpload")

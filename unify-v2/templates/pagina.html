@@ -1,0 +1,15 @@
+{% extends "template.html" %}
+{%set menu_url = pagina.titulo%}
+{% block content %}
+<div class="container">
+	<ul class="breadcrumb-v5">
+		<li><a href="{{base_url}}/"><i class="fa fa-home"></i></a></li>
+		<li class="active">{{pagina.titulo}}</li>
+	</ul> 
+</div>
+
+<!--=== Content ===-->
+<div class="container content height-500">
+	{{pagina.conteudo | raw}}
+</div>
+{% endblock %}
