@@ -304,6 +304,9 @@ $app->get('/contato/', function() use ($app) {
 	$app->render('contato.php');
 });
 
+$app->get('/favicon.ico', function () use ($app, $entityManager) {
+	
+});
 
 $app->get('/:titulo', function ($titulo) use ($app, $entityManager) {
 	$qb = $entityManager->createQueryBuilder();
@@ -315,9 +318,13 @@ $app->get('/:titulo', function ($titulo) use ($app, $entityManager) {
 			->setParameter(3, $titulo)
 			->getQuery()
 			->getResult();
-	$app->view()->setData([ 'pagina' => $pagina[0], 'tags' => $pagina[0]['tags'], 'title' => $titulo, 'url' => full_path()]);
+	if(!$pagina || $pagina.length == 0){
+		$app->render('index.html');
+	}else{
+		$app->view()->setData([ 'pagina' => $pagina[0], 'tags' => $pagina[0]['tags'], 'title' => $titulo, 'url' => full_path()]);
 
-	$app->render('pagina.html');
+		$app->render('pagina.html');
+	}
 });
 $app->get('/post/:titulo', function ($titulo) use ($app, $entityManager) {
 	$qb = $entityManager->createQueryBuilder();
