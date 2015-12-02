@@ -36,7 +36,7 @@ class PaginaCtrl implements IController {
 		$app->get($base_url . 'facebookUrl/:id', function ($id) use($base_url) {
 			$this->printer->printJsonResponse(['facebookUrl' => $this->registrarPaginaFacebook($base_url, $id)]);
 		});
-		$app->get($base_url . 'facebook/:id/', function ($id) use($pp) {
+		$app->get($base_url . 'facebook/:id/', function ($id) use($app) {
 			FacebookSession::setDefaultApplication('659385950766405', '782cf3b317386136cd0130a475681c15');
 			$helper = new FacebookRedirectLoginHelper($this->redirect_url);
 			if (isset($_SESSION) && isset($_SESSION['fb_token'])) {

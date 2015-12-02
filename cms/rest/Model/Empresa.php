@@ -4,7 +4,10 @@ namespace Model;
 
 require_once 'DefaultModel.php';
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\JoinTable;
+use Doctrine\ORM\Mapping\ManyToMany;
 use Doctrine\ORM\Mapping\OneToOne;
 
 /**
@@ -78,8 +81,22 @@ class Empresa extends DefaultModel {
 	/** @Column(type="string", nullable=true) * */
 	protected $facebookPageUrl;
 
+	/**
+	 * @ManyToMany(targetEntity="Detalhe", cascade={"all"})
+	 * @JoinTable(name="empresas_detalhes",
+	 *      joinColumns={@JoinColumn(name="empresa_id", referencedColumnName="id")},
+	 *      inverseJoinColumns={@JoinColumn(name="detalhe_id", referencedColumnName="id")}
+	 *      )
+	 * */
+	protected $detalhes;
+
 	public function __construct() {
 		parent::__construct();
+		$this->detalhes = new ArrayCollection();
+	}
+
+	public function addDetalhe($detalhe) {
+		$this->detalhes[] = $detalhe;
 	}
 
 	public function getId() {
@@ -207,6 +224,11 @@ class Empresa extends DefaultModel {
 		return $this;
 	}
 
+	public function setDetalhes($detalhes) {
+		$this->detalhes = $detalhes;
+		return $this;
+	}
+
 	public function getSlogan() {
 		return $this->slogan;
 	}
@@ -268,6 +290,20 @@ class Empresa extends DefaultModel {
 	public function setFacebookPageUrl($facebookPageUrl) {
 		$this->facebookPageUrl = $facebookPageUrl;
 		return $this;
+	}
+
+	public function expose() {
+		$empresa = parent::expose();
+		$empresa["detalhes"] = [];
+		foreach ($this->detalhes as $detalhe) {
+			$empresa["detalhes"][] = $detalhe->expose();
+		}
+		return $empresa;
+	}
+
+	public function fromArray($array) {
+		unset($array['detalhes']);
+		return parent::fromArray($array);
 	}
 
 }

@@ -1,20 +1,18 @@
 {
-  "name": "Angle",
-  "version": "1.5.0",
+  "name": "CMS",
+  "version": "1.0.0",
   "authors": [
-    "@themicon_co"
+    "@fabriciocs"
   ],
-  "description": "Angle - Bootstrap Admin App + AngularJS",
+  "description": "CMS - é um Sistema de Gestão de Conteúdo criado com angularJs, Twig e PHP",
   "main": "index.html",
   "keywords": [
     "bootstrap",
     "angular",
     "admin",
-    "theme",
-    "dashboard"
+    "cms",
+    "content"
   ],
-  "license": "http://support.wrapbootstrap.com/knowledge_base/topics/usage-licenses",
-  "homepage": "http://themicon.co",
   "private": true,
   "ignore": [
     "**/.*"

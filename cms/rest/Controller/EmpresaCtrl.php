@@ -3,6 +3,7 @@
 namespace Controller;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Exception;
 use Model\Album;
 use Model\Detalhe;
 use Model\Empresa;
@@ -50,6 +51,7 @@ class EmpresaCtrl implements IController {
 				->setPublicar(FALSE);
 		$this->entityManager->persist($album);
 		$empresa->setAlbum($album);
+		$empresa->setDetalhes(new ArrayCollection());
 		$this->entityManager->persist($empresa);
 		$this->entityManager->flush();
 	}
@@ -64,7 +66,6 @@ class EmpresaCtrl implements IController {
 			$empresa = (new Empresa())->fromArray($body);
 			$tmp = $this->empresaRepository->find(1);
 			$tmp->setNome($empresa->getNome())
-					->setNome($empresa->getNome())
 					->setHistoria($empresa->getHistoria())
 					->setResumo($empresa->getResumo())
 					->setSlogan($empresa->getSlogan())
@@ -83,11 +84,17 @@ class EmpresaCtrl implements IController {
 					->setTemaDark($empresa->getTemaDark())
 					->setTemaFullWidth($empresa->getTemaFullWidth())
 					->setFacebookPageUrl($empresa->getFacebookPageUrl());
-			$album = $tmp->getAlbum();
-			$album->setNome('Empresa - ' . $tmp->getNome());
-			$this->entityManager->persist($album);
-			$this->entityManager->flush();
+			$detalhes = $tmp->getDetalhes();
+			foreach ($detalhes as $detalhe) {
+				$detalhes->removeElement($detalhe);
+				$this->entityManager->remove($detalhe);
+				$this->entityManager->flush();
+			}
 
+			$this->entityManager->flush();
+			foreach ($body['detalhes'] as $detalhe) {
+				$tmp->addDetalhe((new Detalhe())->fromArray($detalhe));
+			};
 			$this->entityManager->persist($tmp);
 			$this->entityManager->flush();
 			$this->printer->printJsonResponse($tmp);

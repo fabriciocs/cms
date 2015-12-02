@@ -28,10 +28,8 @@ class SessaoCtrl implements IController {
 			$sessao = (new Sessao())->fromArray($body);
 			if ($sessao->getId() != NULL) {
 				$tmp = $this->sessaoRepository->find($sessao->getId())
-						->setTitulo($sessao->getTitulo())
-						->setLink($sessao->getLink())
+						->setCodigo($sessao->getCodigo())
 						->setConteudo($sessao->getConteudo());
-				\Doctrine\Common\Util\Debug::dump($tmp);
 				$sessao = $tmp;
 			}
 			$this->entityManager->persist($sessao);

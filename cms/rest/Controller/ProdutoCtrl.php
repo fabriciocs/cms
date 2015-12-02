@@ -65,13 +65,14 @@ class ProdutoCtrl implements IController {
 					$this->entityManager->remove($detalhe);
 					$this->entityManager->flush();
 				}
+
 				$this->entityManager->flush();
 				foreach ($body['detalhes'] as $detalhe) {
 					$tmp->addDetalhe((new Detalhe())->fromArray($detalhe));
 				};
+
 				$produto = $tmp;
 			}
-//			Debug::dump($produto);
 			$this->entityManager->persist($produto);
 			$this->entityManager->flush();
 			$this->printer->printJsonResponse($produto);

@@ -5,7 +5,6 @@ namespace Model;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\JoinTable;
-use Doctrine\ORM\Mapping\ManyToMany;
 use Doctrine\ORM\Mapping\OneToOne;
 
 /**
@@ -47,9 +46,7 @@ class Produto extends DefaultModel {
 	protected $detalhes;
 
 	public function __construct() {
-		parent::__construct();
 		$this->detalhes = new ArrayCollection();
-		$this->planos = new ArrayCollection();
 	}
 
 	public function getId() {
@@ -88,7 +85,7 @@ class Produto extends DefaultModel {
 	}
 
 	public function setDestaque($destaque) {
-		$this->destaque = filter_var($destaque, FILTER_VALIDATE_BOOLEAN);
+		$this->destaque = $destaque;
 		return $this;
 	}
 
@@ -120,24 +117,6 @@ class Produto extends DefaultModel {
 
 	public function setResumo($resumo) {
 		$this->resumo = $resumo;
-		return $this;
-	}
-
-	public function getPreco() {
-		return $this->preco;
-	}
-
-	public function setPreco($preco) {
-		$this->preco = $preco;
-		return $this;
-	}
-
-	public function getBotaoPagSeguro() {
-		return $this->botaoPagSeguro;
-	}
-
-	public function setBotaoPagSeguro($botaoPagSeguro) {
-		$this->botaoPagSeguro = $botaoPagSeguro;
 		return $this;
 	}
 

@@ -1,8 +1,8 @@
 {
-  "name": "Angle",
-  "version": "1.5.0",
-  "description": "Angle - Bootstrap Admin App + AngularJS",
-  "author": "@themicon_co",
+  "name": "CMS",
+  "version": "1.0.0",
+  "description": "CMS - é um Sistema de Gestão de Conteúdo criado com angularJs, Twig e PHP",
+  "author": "@fabriciocs",
   "dependencies": {
     "gulp": "^3.8.10",
     "gulp-install": "^0.2.0"

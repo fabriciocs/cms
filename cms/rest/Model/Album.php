@@ -29,7 +29,6 @@ class Album extends DefaultModel {
 	protected $imagens;
 
 	public function __construct() {
-		parent::__construct();
 		$this->imagens = new ArrayCollection();
 	}
 

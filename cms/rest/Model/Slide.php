@@ -17,7 +17,7 @@ class Slide extends DefaultModel {
 	/** @Column(type="string") * */
 	protected $linkImagem;
 
-	/** @Column(type="text", nullable=true) * */
+	/** @Column(type="text") * */
 	protected $texto;
 
 	/** @Column(type="integer", nullable=true) * */

@@ -9,46 +9,40 @@ namespace Model;
  * */
 class Sessao extends DefaultModel {
 
-	/** @Id @Column(type="integer") @GeneratedValue * */
-	protected $id;
+    /** @Id @Column(type="integer") @GeneratedValue * */
+    protected $id;
 
-	/** @Column(type="string") * */
-	protected $titulo;
+    /** @Column(type="string") * */
+    protected $codigo;
 
-	/** @Column(type="string", nullable=true) * */
-	protected $link;
+    /** @Column(type="text") * */
+    protected $conteudo;
 
-	/** @Column(type="text") * */
-	protected $conteudo;
+    public function getId() {
+        return $this->id;
+    }
 
-	public function getId() {
-		return $this->id;
-	}
+    public function getCodigo() {
+        return $this->codigo;
+    }
 
-	public function getTitulo() {
-		return $this->titulo;
-	}
+    public function getConteudo() {
+        return $this->conteudo;
+    }
 
-	public function getLink() {
-		return $this->link;
-	}
+    public function setId($id) {
+        $this->id = $id;
+        return $this;
+    }
 
-	public function getConteudo() {
-		return $this->conteudo;
-	}
+    public function setCodigo($codigo) {
+        $this->codigo = $codigo;
+        return $this;
+    }
 
-	public function setTitulo($titulo) {
-		$this->titulo = $titulo;
-		return $this;
-	}
+    public function setConteudo($conteudo) {
+        $this->conteudo = $conteudo;
+        return $this;
+    }
 
-	public function setLink($link) {
-		$this->link = $link;
-		return $this;
-	}
-
-	public function setConteudo($conteudo) {
-		$this->conteudo = $conteudo;
-		return $this;
-	}
 }

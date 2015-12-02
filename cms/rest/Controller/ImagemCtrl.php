@@ -25,8 +25,8 @@ class ImagemCtrl implements IController {
 	}
 
 	function removeImage($image) {
-		$thumbnailDestination = realpath(self::BASE_IMG_PATH) . "/" . $image->getThumbnail();
-		$destination = realpath(self::BASE_IMG_PATH) . "/" . $image->getUrl();
+		$thumbnailDestination = realpath(self::BASE_IMG_PATH . self::BASE_IMG_PATH) . "/" . $image->getThumbnail();
+		$destination = realpath(self::BASE_IMG_PATH . self::BASE_IMG_PATH) . "/" . $image->getUrl();
 		unlink($thumbnailDestination);
 		unlink($destination);
 	}
@@ -71,8 +71,6 @@ class ImagemCtrl implements IController {
 
 		$this->entityManager->persist($imagem);
 		$this->entityManager->flush();
-		$imagem->setUrl('../'.$imagem->getUrl());
-		$imagem->setThumbnail('../'.$imagem->getThumbnail());
 		$this->printer->printJsonResponse($imagem);
 	}
 
@@ -116,6 +114,7 @@ class ImagemCtrl implements IController {
 			$imagens = $qb->select('e')
 					->from('Model\Imagem', 'e')
 					->where('e.album = ?1')
+					->orderby('e.capa', 'DESC')
 					->setParameter(1, $albumId)
 					->getQuery()
 					->getResult();
@@ -123,11 +122,11 @@ class ImagemCtrl implements IController {
 		});
 		$app->post($base_url . ':album', function ($albumId) use($body, $app) {
 			$errors = [];
-			if (is_array($_FILES['files']['tmp_name'])) {
-				foreach ($_FILES['files']['tmp_name'] as $key => $tempName) {
-					$name = $_FILES['files']['name'][$key];
-					$tempName = $_FILES['files']['tmp_name'][$key];
-					$error = $_FILES['files']['error'][$key];
+			if (is_array($_FILES['file']) && is_array($_FILES['file']['tmp_name'])) {
+				foreach ($_FILES['file']['tmp_name'] as $key => $tempName) {
+					$name = $_FILES['file']['name'][$key];
+					$tempName = $_FILES['file']['tmp_name'][$key];
+					$error = $_FILES['file']['error'][$key];
 					$errors[$name] = $this->uploadImage($error, $name, $tempName, $albumId);
 				}
 			} else {

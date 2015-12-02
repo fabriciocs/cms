@@ -12,7 +12,7 @@ require_once "Configs.php";
 $user = constant('dbUsername');
 $pass = constant('dbPassword');
 
-$dbh = new PDO('mysql:host=' . constant('dbHostName') . ';dbname=' . constant('dbName'), $user, $pass, array(
+$dbh = new PDO('mysql:host='.constant('dbHostName').';dbname='.constant('dbName'), $user, $pass, array(
 	PDO::ATTR_PERSISTENT => true
 		));
 
@@ -20,11 +20,16 @@ $dbh = new PDO('mysql:host=' . constant('dbHostName') . ';dbname=' . constant('d
 $isDevMode = true;
 $config = Setup::createAnnotationMetadataConfiguration(array(__DIR__ . "/Model"), $isDevMode);
 $config->setProxyDir(__DIR__ . "/Proxies");
+// or if you prefer yaml or XML
+//$config = Setup::createXMLMetadataConfiguration(array(__DIR__."/config/xml"), $isDevMode);
+//$config = Setup::createYAMLMetadataConfiguration(array(__DIR__."/config/yaml"), $isDevMode);
+// database configuration parameters
 $conn = array(
 	'dbname' => constant('dbName'),
 	'user' => $user,
 	'password' => $pass,
 	'host' => constant('dbHostName'),
+	'driver' => 'pdo_mysql',
 	'pdo' => $dbh,
 );
 
