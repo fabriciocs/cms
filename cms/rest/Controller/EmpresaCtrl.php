@@ -92,7 +92,7 @@ class EmpresaCtrl implements IController {
 			}
 
 			$this->entityManager->flush();
-			if(isset($body['detalhes']){
+			if(isset($body['detalhes'])){
 				foreach ($body['detalhes'] as $detalhe) {
 					$tmp->addDetalhe((new Detalhe())->fromArray($detalhe));
 				};
